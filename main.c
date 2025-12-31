@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2025/12/31 18:10:17 by brouane          ###   ########.fr       */
+/*   Updated: 2025/12/31 21:06:38 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,7 @@ char	*ft_putwordd(char const *s, int i, int word_len)
 	return (word);
 }
 
-char **prezero_remover(int count, char **numbers)
-{
-    int max = 1;
-    int j = 0;
-    char **array = (char **)malloc(count - 1);
-    
-    while(count > max)
-    {
-        int i = 0;
-        if (numbers[max][i] == 43 || numbers[max][i] == 45)
-            i++;
-        while (numbers[max][i] == 48)
-            i++;
-        array[j] = ft_putwordd(numbers[max], i, ft_strlen(numbers[max]));
-        max++;
-        j++;
-    }
-    return (array);
-}
-
-void first(char **argv, int argc)
+int count_all_nums(char **argv, int argc)
 {
     int i = 0;
     int c = 0;
@@ -67,55 +47,86 @@ void first(char **argv, int argc)
         c += ft_count_words(*(argv + i), ' ');
         i++;
     }
+    return (c);
+}
+
+char **first(char **argv, int argc, int c)
+{
+    int i = 0;
+    
     char **array = (char **)malloc(sizeof(char *) * (c + 1));
+    if(!array)
+        return (NULL);
     i = 0;
     int word = 0;
     while(argc - 1 > i)
-    {
-        word = ft_split_c(*(argv + i), array, ' ', word);
-        printf("w:%d\n", word);
-        i++;
-    }
-    i = 0;
+        word = split_them(*(argv + i++), array, ' ', word);
+    return(array);
+}
+
+int min_max_dup_errors(int c, long *numbers)
+{
+    int i = 0;
+    
     while(c > i)
     {
-        printf("s%d: %s\n", i, array[i]);
+        if(numbers[i] > 2147483647 || numbers[i] < -2147483648)
+            return (1);
+        int j = 0;
+        while(c > j)
+        {
+            if(numbers[i] == numbers[j] && i != j)
+                return (1);
+            j++;
+        }
         i++;
     }
-    printf("cc:%d\n", c);
+    return (0);
+}
+
+int check_for_errors(char **array, long *numbers, int c)
+{
+    int max;
+    
+    max = 0;
+    while (array[max])
+    {   
+        if (error_checker(array[max]))
+            return (1);
+        numbers[max] = ft_atoi(array[max]);
+        max++;
+    }
+    if(min_max_dup_errors(c, numbers))
+        return (1);
+    return (0);
+}
+
+int push_swap(int argc, char **argv)
+{
+    char **array;
+    long *numbers;
+    int c;
+    
+    if (argc == 1 || (argc == 2 && !**(argv + 1)))
+        return (1);
+    c = count_all_nums(argv + 1, argc);
+    array = first(argv + 1, argc, c);
+    numbers = (long *)malloc(sizeof(long) * c);
+    if(!numbers)
+    {
+        free(array);
+        return 0;
+    }
+    if(check_for_errors(array, numbers, c))
+    {
+        printf("error\n");
+        free(array);
+        free(numbers);
+    }    
+    return (0);
 }
 
 int main(int argc, char **argv)
 {
-    char **array;
-    if (argc == 1 || (argc == 2 && !**(argv + 1)))
-        return (1);
-    int max = 1;
-    first(argv + 1, argc);
-    
-    // while (argc > max)
-    // {   
-    //     printf("l:%d\n", argc);
-    //     array = ft_split(argv[max], ' ');
-    //     // while()
-    //     // {
-            
-    //         printf("s: %s\n", array[max - 1]);
-    //     // }
-    //     if (error_checker(array[max - 1]))
-    //         write(1, "e", 1);
-    //     else
-    //         write(1, "g", 1);
-    //     write(1, "\n", 1);
-    //     max++;
-    // }
-    // // array = prezero_remover(argc, argv);
-    // max = 0;
-    // printf("W:%d\n", words);
-    // while (words > max)
-    // {
-    //     printf("%s\n", array[max]);
-    //     max++;
-    // }
-    // duplicate_checker()
+    push_swap(argc, argv);
 }

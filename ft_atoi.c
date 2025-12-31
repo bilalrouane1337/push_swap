@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 16:49:59 by brouane           #+#    #+#             */
-/*   Updated: 2025/12/31 21:04:30 by brouane          ###   ########.fr       */
+/*   Created: 2025/10/18 18:56:22 by brouane           #+#    #+#             */
+/*   Updated: 2025/12/31 18:57:59 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdio.h>
+long	ft_atoi(const char *nptr)
+{
+	size_t	i;
+	long	result;
+	long		sign;
 
-
-
-#include <unistd.h>
-#include <stdlib.h>
-
-int split_them(char const *s, char **s2, char c, int word);
-int error_checker(char *str);
-int	ft_count_words(char const *str, char c);
-char	*ft_putword(char *word, char const *s, int i, int word_len);
-long	ft_atoi(const char *nptr);
-#endif
+	i = 0;
+	result = 0;
+	sign = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
