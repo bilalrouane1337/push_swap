@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/03 23:48:02 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/05 00:03:01 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,33 +170,105 @@ void push_to_b(stack_node_t **stack_a, stack_node_t **stack_b)
     int min_range = 0;
     int max_range = 2;
     int count = 0;
-
-    while (temp && max_range - min_range >= count)
+    while (temp && max_range >= count)
     {
-        printf("while: %d\n", temp->value);
-        // stack_node_t *x = temp->next;
-        // printf("while: %d\n", x->value);
+        // printf("while: %d", temp->value);
+        // printf("   %d\n", temp->index);
         if (temp->index >= min_range && temp->index <= max_range)
         {
-            stack_node_t * ff = *stack_a;
-            // printf("pb%p\n", ff->value);
-            temp = pb(stack_a, stack_b, temp);
             printf("pb\n");
+            temp = pb(stack_a, stack_b, temp);
             count++;
         }
         else
         {
             printf("ra\n");
-            temp = temp->next;
-            ra(stack_a);
+            // temp = temp->next;
+            temp = ra(stack_a);
         }
-        // printf("%p\n", temp);
-        // temp = temp->next;
+        if(max_range < count)
+        {
+            int temp_min_range = min_range;
+            min_range = max_range + 1;
+            max_range = max_range + (max_range - temp_min_range) + 1;
+            printf("------------------------------------\n");
+        }
+    }
+    // printf("count: %d\n", count);
+}
+
+int which_position(stack_node_t *stack_b, int right_index)
+{
+    int pos = 0;
+    while (stack_b && stack_b->index != right_index)
+    {
+        stack_b = stack_b->next;
+        pos++;
+    }
+    return pos;
+}
+
+void push_back_to_a(stack_node_t **stack_a, stack_node_t **stack_b, int c)
+{
+    stack_node_t *temp = *stack_b;
+    int right_index = c - 1;
+    int position = 0;
+    int y = 0;
+    while (temp) // while
+    {
+        if (temp->index == right_index)
+        {
+            temp = pa(stack_a, stack_b, temp);
+            right_index--;
+        }
+        else
+        {
+            stack_node_t *tt = *stack_b;
+            printf("-----------------stack_b %d\n", tt->value);
+            printf("-----------------temp %d\n", temp->value);
+            printf("position: %d\n", position);
+            position = which_position(*stack_b, right_index); // 
+            printf("position: %d\n", position);
+            if (position < right_index / 2)
+            {
+                while (temp && position > 0) // while
+                {
+                    temp = rb(stack_b);
+                    printf("rb\n");
+                    position--;
+                }
+                if (temp)
+                {
+                    temp = pa(stack_a, stack_b, temp); 
+                    right_index--;
+                    printf("pa\n");
+                }
+            }
+            else
+            {
+                // break;
+                printf("position: %d\n", position);
+                printf("right_index: %d\n", right_index);
+                while (temp && position >= right_index) // while
+                {
+                    temp = rrb(stack_b);
+                    stack_node_t *pp = *stack_b;
+                    printf("dddddddddddddddddddddddddddddddddddd%d\n", temp->value);
+                    printf("pppppppppppppppppppppppppppppppppppp%d\n", pp->value);
+                    position--;
+                }
+                if (temp)
+                {
+                    temp = pa(stack_a, stack_b, temp);
+                    right_index--;
+                }
+            }
+        }
+        y++;
+        printf("y workedddddddddddddddddddddddddddddddddddddddddddddd\n");
     }
     
 }
-
-
 
 int push_swap(int argc, char **argv)
 {
@@ -237,22 +309,27 @@ int push_swap(int argc, char **argv)
         return (0);
     assign_to_stack(&stack_a, unordered_numbers, numbers, c);
     push_to_b(&stack_a, &stack_b);
+    printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
+    push_back_to_a(&stack_a, &stack_b, c);
     stack_node_t *tmp = stack_b;
 	while (tmp)
 	{
-		printf("%d -> \n", tmp->value);
-		printf("%d -> \n", tmp->index);
+		printf("value: %d -> \n", tmp->value);
+		printf("index: %d -> \n", tmp->index);
 		printf("##################\n");
 		tmp = tmp->next;
 	}
-        printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    tmp = stack_a;
+	while (tmp)
+	{
+		printf("value: %d -> \n", tmp->value);
+		printf("index: %d -> \n", tmp->index);
+		printf("##################\n");
+		tmp = tmp->next;
+	}
+        // printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
 
-	// printf("NULL\n");
-    // while (i < c)
-    // {
-    //     printf("hh: %ld\n", unordered_numbers[i]);
-    //     i++;
-    // }
 
     
     return (0);

@@ -6,13 +6,13 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 21:36:37 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/03 23:49:06 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/04 23:37:48 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate(stack_node_t **stack)
+stack_node_t *rotate(stack_node_t **stack)
 {
     stack_node_t *temp = *stack;
     
@@ -28,17 +28,48 @@ void rotate(stack_node_t **stack)
             search = search->next;
         }
         search->next = temp;
-    }  
+    }
+    return (*stack);
 }
 
-void ra(stack_node_t **stack_a)
+stack_node_t *reverse_rotate(stack_node_t **stack)
 {
-    rotate(stack_a);
+    stack_node_t *curr = *stack;
+    stack_node_t *first = *stack;
+    stack_node_t *prev;
+
+    if (curr)
+    {
+        while (curr->next)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        curr->next = first;
+        *stack = curr;
+        prev->next = NULL;
+    }
+    return (*stack);
 }
 
-void rb(stack_node_t **stack_b)
+stack_node_t *ra(stack_node_t **stack_a)
 {
-    rotate(stack_b);
+    return (rotate(stack_a));
+}
+
+stack_node_t *rb(stack_node_t **stack_b)
+{
+    return (rotate(stack_b));
+}
+
+stack_node_t *rra(stack_node_t **stack_a)
+{
+    return (reverse_rotate(stack_a));
+}
+
+stack_node_t *rrb(stack_node_t **stack_b)
+{
+    return (reverse_rotate(stack_b));
 }
 
 void	ft_lstadd_bback(stack_node_t **lst, stack_node_t *new)
@@ -57,26 +88,36 @@ void	ft_lstadd_bback(stack_node_t **lst, stack_node_t *new)
 		*lst = new;
 }
 
-stack_node_t *pb(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push)
+stack_node_t *push(stack_node_t **from_stack, stack_node_t **to_stack, stack_node_t *to_push)
 {
 
     
-    stack_node_t *temp = *stack_a;
+    stack_node_t *temp = *from_stack;
+    *from_stack = temp->next;
+    
     // printf("hhhhhhhhhhhhh%p\n", temp->value);
-    *stack_a = temp->next;
-    // free(temp);
+    // stack_node_t * ff = *from_stack;
+    // printf("ppppppppppppppb%p\n", ff->value);
+    to_push->next = *to_stack;
+	*to_stack = to_push;
 
-        stack_node_t * ff = *stack_a;
-            // printf("ppppppppppppppb%p\n", ff->value);
-    to_push->next = *stack_b;
-	*stack_b = to_push;
-
-    stack_node_t * fff = *stack_b;
-            // printf("xxxxxxxx%p\n", fff->next);
+    // stack_node_t * fff = *to_stack;
+    // printf("xxxxxxxx%p\n", fff->next);
 
             
-    return(*stack_a);
+    return(*from_stack);
 }
+
+stack_node_t *pb(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push)
+{
+    return (push(stack_a, stack_b, to_push));
+}
+
+stack_node_t *pa(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push)
+{
+    return (push(stack_b, stack_a, to_push));
+}
+
 // int main()
 // {
 //     stack_node_t	*list = NULL;

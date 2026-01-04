@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:49:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/03 23:29:12 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/04 23:05:19 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ char	*ft_putword(char *word, char const *s, int i, int word_len);
 long	ft_atoi(const char *nptr);
 
 void ft_lstadd_back(stack_node_t **lst, long value, int index);
-void ra(stack_node_t **stack_a);
+stack_node_t *ra(stack_node_t **stack_a);
+stack_node_t *rb(stack_node_t **stack_b);
+
+stack_node_t *rra(stack_node_t **stack_a);
+stack_node_t *rrb(stack_node_t **stack_b);
 
 stack_node_t *pb(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push);
+stack_node_t *pa(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push);
 
 #endif
