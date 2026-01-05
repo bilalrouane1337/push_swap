@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/05 00:03:01 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/05 22:49:34 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,30 @@ int count_all_nums(char **argv, int argc)
     return (c);
 }
 
-char **first(char **argv, int argc, int *c)
+char **first(char **argv, int argc, int c, long **numbers, long **unordered_numbers)
 {
-    int i = 0;
+    int i;
     int temp;
+    char **array;
+    int word;
     
-    char **array = (char **)malloc(sizeof(char *) * (*c + 1));
-    if(!array)
-        return (NULL);
+    array = NULL;
+    array = (char **)malloc(sizeof(char *) * (c + 1));
+    if(c == 0 || !array)
+        return (free(array), NULL);
     i = 0;
-    int word = 0;
+    word = 0;
     while(argc - 1 > i)
     {
         temp = word;
         word = split_them(*(argv + i++), array, ' ', word);
-        if (word == temp)
-            *c = -1;
+        if (word == temp || word == -1)
+            return(free_array(array, word), NULL);
     }
+    *numbers = (long *)malloc(sizeof(long) * c);
+    *unordered_numbers = (long *)malloc(sizeof(long) * c);
+    if (!*numbers || !*unordered_numbers)
+        return (free(array), free(*numbers), free(*unordered_numbers), NULL);
     return(array);
 }
 
@@ -90,22 +97,35 @@ int min_max_dup_errors(int c, long *numbers)
     return (0);
 }
 
-int check_for_errors(char **array, long *numbers, int c)
+int check_for_errors(char ***array, long **numbers, int c)
 {
     int max;
-    
+    int flag;
+
     max = 0;
-    while (array[max])
-    {   
-        if (error_checker(array[max]))
-            return (1);
-        numbers[max] = ft_atoi(array[max]);
+    flag = 0;
+    while ((*array)[max])
+    {
+        if (error_checker((*array)[max]))
+        {
+            flag = 1;
+            break;
+        }
+        (*numbers)[max] = ft_atoi((*array)[max]);
         max++;
     }
-    if(min_max_dup_errors(c, numbers))
+    if (flag || min_max_dup_errors(c, *numbers))
+    {
+        max = 0;
+        while ((*array)[max])
+            free((*array)[max++]);
+        free(*array);
+        free(*numbers);
         return (1);
+    }
     return (0);
 }
+
 
 void numbers_copy(long *numbers, long *unordered_numbers, int c){
     int i;
@@ -275,67 +295,58 @@ int push_swap(int argc, char **argv)
     stack_node_t *stack_a = NULL;
     stack_node_t *stack_b = NULL;
     
-    char **array;
-    long *numbers;
-    long *unordered_numbers;
+    char **array = NULL;
+    long *numbers = NULL;
+    long *unordered_numbers = NULL;
     int c;
     
     if (argc == 1 || (argc == 2 && !**(argv + 1)))
         return (1);
     c = count_all_nums(argv + 1, argc);
-    array = first(argv + 1, argc, &c);
-    if (c == -1)
-        return 0;
-    
-    numbers = (long *)malloc(sizeof(long) * c);
-    unordered_numbers = (long *)malloc(sizeof(long) * c);
-    if(!numbers || !unordered_numbers)
-    {
-        free(unordered_numbers);
-        free(numbers);
-        free(array);
-        return 0;
-    }
-    if(check_for_errors(array, numbers, c))
-    {
-        printf("error\n");
-        free(array);
-        free(numbers);
+    array = first(argv + 1, argc, c, &numbers, &unordered_numbers);
+    if (!array)
         return (1);
-    }
-    int i = 0;
-    numbers_copy(numbers, unordered_numbers, c);
-    if(!sort_numbers(numbers, c))
-        return (0);
-    assign_to_stack(&stack_a, unordered_numbers, numbers, c);
-    push_to_b(&stack_a, &stack_b);
-    printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
-    push_back_to_a(&stack_a, &stack_b, c);
-    stack_node_t *tmp = stack_b;
-	while (tmp)
-	{
-		printf("value: %d -> \n", tmp->value);
-		printf("index: %d -> \n", tmp->index);
-		printf("##################\n");
-		tmp = tmp->next;
-	}
-    printf("@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    tmp = stack_a;
-	while (tmp)
-	{
-		printf("value: %d -> \n", tmp->value);
-		printf("index: %d -> \n", tmp->index);
-		printf("##################\n");
-		tmp = tmp->next;
-	}
-        // printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
+    // if(check_for_errors(&array, &numbers, c))
+    // {
+    //     printf("Error\n");
+    //     return (1);
+    // }
+    // int i = 0;
+    // numbers_copy(numbers, unordered_numbers, c);
+    // if(!sort_numbers(numbers, c))
+    //     return (0);
+    // assign_to_stack(&stack_a, unordered_numbers, numbers, c);
+    // push_to_b(&stack_a, &stack_b);
+    // printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
+    // push_back_to_a(&stack_a, &stack_b, c);
+    // stack_node_t *tmp = stack_b;
+	// while (tmp)
+	// {
+	// 	printf("value: %d -> \n", tmp->value);
+	// 	printf("index: %d -> \n", tmp->index);
+	// 	printf("##################\n");
+	// 	tmp = tmp->next;
+	// }
+    // printf("@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    // tmp = stack_a;
+	// while (tmp)
+	// {
+	// 	printf("value: %d -> \n", tmp->value);
+	// 	printf("index: %d -> \n", tmp->index);
+	// 	printf("##################\n");
+	// 	tmp = tmp->next;
+	// }
+    //     // printf("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\n");
 
-
-    
+    free(numbers);
+    free(unordered_numbers);
+    free(array);
+    printf("g\n");
     return (0);
 }
 
 int main(int argc, char **argv)
 {
     push_swap(argc, argv);
+    // printf("a\n");
 }

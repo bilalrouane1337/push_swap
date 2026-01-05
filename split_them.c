@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:37:25 by brouane           #+#    #+#             */
-/*   Updated: 2025/12/31 21:04:13 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/05 22:49:47 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int free_array(char **ptr, int i)
 		free(ptr[i]);
 	}
 	free(ptr);
-	return (0);
+	return (-1);
 }
 
 int	ft_count_words(char const *str, char c)
