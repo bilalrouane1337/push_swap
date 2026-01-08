@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   free_pointers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 18:56:22 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/07 17:45:06 by brouane          ###   ########.fr       */
+/*   Created: 2026/01/07 17:41:32 by brouane           #+#    #+#             */
+/*   Updated: 2026/01/07 17:45:10 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atoi(const char *nptr)
+void free_pointers(char ***array, long **numbers, long **unordered_numbers, int len)
 {
-	size_t	i;
-	long	result;
-	long		sign;
-
-	i = 0;
-	result = 0;
-	sign = 1;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
+    free_array(*array, len);
+    free(*numbers);
+    free(*unordered_numbers);
 }

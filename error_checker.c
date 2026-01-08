@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:51:59 by brouane           #+#    #+#             */
-/*   Updated: 2025/12/31 21:11:45 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/07 17:26:21 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ int ft_issign(char s)
 int error_checker(char *str)
 {
     int i = 0;
-    char **array;
     
     while (str[i])
     {
         if (!(ft_isdigit(str[i]) || ft_issign(str[i])))
             return (1);
-        if (ft_issign(str[i]) && i != 0)
+        if (ft_issign(str[i]) && (i != 0 || (i == 0 && ft_strlen(str) == 1)))
             return (1);
         i++;
     }
