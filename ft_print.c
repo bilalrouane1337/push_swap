@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 22:10:09 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/08 00:05:51 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/08 21:45:07 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void ft_print(char *str)
 {
-    // while (*str)
-    // {
-    //     write(1, str, 1);
-    //     str++;
-    // }
-    // write(1, "\n", 1);
+    while (*str)
+    {
+        write(1, str, 1);
+        str++;
+    }
+    write(1, "\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 21:36:37 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/08 00:28:35 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/08 23:07:22 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,26 @@ stack_node_t *rrb(stack_node_t **stack_b)
     return (reverse_rotate(stack_b));
 }
 
-stack_node_t *push(stack_node_t **from_stack, stack_node_t **to_stack, stack_node_t *to_push)
+stack_node_t *push(stack_node_t **from_stack,
+				   stack_node_t **to_stack, stack_node_t *to_push)
 {
-    stack_node_t *temp = *from_stack;
-    *from_stack = temp->next;
+	/* validate pointers */
+	if (!from_stack || !to_stack || !*from_stack)
+		return (NULL);
 
-    to_push->next = *to_stack;
+	/* detach top of from_stack */
+	*from_stack = to_push->next;
+
+	/* push onto to_stack */
+	to_push->next = *to_stack;
 	*to_stack = to_push;
-       
-    return(*from_stack);
+
+	return (*from_stack);
 }
 
-stack_node_t *pb(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push, int *count)
+stack_node_t *pb(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push)
 {
     ft_print("pb");
-    (*count)++;
     return (push(stack_a, stack_b, to_push));
 }
 
@@ -108,10 +113,7 @@ stack_node_t *swap(stack_node_t **stack)
     *stack = (*stack)->next;
     temp->next = (*stack)->next;
     (*stack)->next = temp;
-
-    // printf("dd: %d\n", (*stack)->index);
-    // printf("dd: %d\n", (*stack)->index);
-    // printf("dd: %d\n", (*stack)->index);
+    return (*stack);
 }
 
 stack_node_t *sa(stack_node_t **stack_a)
