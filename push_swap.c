@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/09 00:46:14 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/09 18:39:39 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,10 +184,22 @@ int assign_to_stack(stack_node_t **stack, long *unordered_numbers, long *numbers
 
 int set_max_range(int count)
 {
-    if (count == 5)
-    {
-        return 1;
-    }
+    // if (count <= 8)
+    //     return count;
+    // if (count <= 15)
+    //     return count / 2;
+    // if (count <= 30)
+    //     return count / 3;
+    // if (count <= 60)
+    //     return count / 4;
+    // if (count <= 100)
+    //     return count / 5;
+    // return count / 13;
+    if (count <= 10)
+        return 5;
+    if (count <= 100)
+        return 16;
+    return 32;
     
 }
 
@@ -232,33 +244,56 @@ void three_sorter(stack_node_t **stack_a)
         rra(stack_a);
 }
 
-void pb_and_increment(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push, int *count)
-{
-    pb(stack_a, stack_b, *stack_a);
-    (*count)++;
-}
+// void pb_and_increment(stack_node_t **stack_a, stack_node_t **stack_b, stack_node_t *to_push, int *count)
+// {
+//     pb(stack_a, stack_b, *stack_a);
+//     (*count)++;
+// }
 
 void push_to_b(stack_node_t **stack_a, stack_node_t **stack_b, int c)
 {
     stack_node_t *temp = *stack_a;
     
     int min_range = 0;
-    int max_range = 2;
-    int count = 0;
-    while (*stack_a && max_range >= count)
+    int max_range = set_max_range(c);
+    while (*stack_a)
     {
-        if ((*stack_a)->index >= min_range && (*stack_a)->index <= max_range)
-            pb_and_increment(stack_a, stack_b, (*stack_a), &count);
+        if ((*stack_a)->index <= min_range)
+        {
+            pb(stack_a, stack_b, *stack_a);
+            min_range++;
+        }
+        else if ((*stack_a)->index <= min_range + max_range)
+        {
+            pb(stack_a, stack_b, *stack_a);
+            rb(stack_b);
+            min_range++;
+        }
         else
             ra(stack_a);
-        if(max_range < count)
-        {
-            int temp_min_range = min_range;
-            min_range = max_range + 1;
-            max_range = max_range + (max_range - temp_min_range) + 1;
-        }
     }
 }
+// void push_to_b(stack_node_t **stack_a, stack_node_t **stack_b, int c)
+// {
+//     stack_node_t *temp = *stack_a;
+    
+//     int min_range = 0;
+//     int max_range = set_max_range(c);
+//     int count = 0;
+//     while (*stack_a && max_range >= count)
+//     {
+//         if ((*stack_a)->index >= min_range && (*stack_a)->index <= max_range)
+//             pb_and_increment(stack_a, stack_b, (*stack_a), &count);
+//         else
+//             ra(stack_a);
+//         if(max_range < count)
+//         {
+//             int temp_min_range = min_range;
+//             min_range = max_range + 1;
+//             max_range = max_range + (max_range - temp_min_range) + 1;
+//         }
+//     }
+// }
 
 
 

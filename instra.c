@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 21:36:37 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/08 23:07:22 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/09 18:25:06 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 stack_node_t *rotate(stack_node_t **stack)
 {
-    stack_node_t *temp = *stack;
-    
-    *stack = temp->next;
-    temp->next = NULL;
-    
-    stack_node_t *search = *stack;
-    
-    if (search)
-    {
-        while (search->next)
-        {
-            search = search->next;
-        }
-        search->next = temp;
-    }
+    stack_node_t *temp;
+    stack_node_t *search;
+
+    if (!stack || !*stack || !(*stack)->next)
+        return (*stack);  // 0 or 1 node → nothing to rotate
+
+    temp = *stack;          // first node
+    *stack = temp->next;    // new head
+    temp->next = NULL;      // detach old head
+
+    search = *stack;
+    while (search->next)
+        search = search->next;
+
+    search->next = temp;    // put old head at the end
+
     return (*stack);
 }
+
 
 stack_node_t *ra(stack_node_t **stack_a)
 {
