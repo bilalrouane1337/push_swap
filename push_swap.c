@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/09 18:39:39 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/10 20:14:41 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,29 @@ int count_all_nums(char **argv, int argc)
     return (c);
 }
 
-char **first(char **argv, int argc, int c, long **numbers, long **unordered_numbers)
+char **allocation_manager(char **argv, int argc, int count, long **numbers, long **unordered_numbers)
 {
     int i;
-    int temp;
+    int temp_index;
     char **array;
     int index_reached;
     
     index_reached = 0;
-    array = (char **)malloc(sizeof(char *) * (c + 1));
-    if(c == 0 || !array)
+    array = (char **)malloc(sizeof(char *) * (count + 1));
+    if(count == 0 || !array)
         return (free_array(array, index_reached), NULL);
     i = 0;
     while(argc - 1 > i)
     {
-        temp = index_reached;
-        index_reached = split_them(*(argv + i++), array, ' ', index_reached);
-        if (index_reached == temp || index_reached == -1)
+        temp_index = index_reached;
+        index_reached = split_them(*(argv + i++), array, 32, index_reached);
+        if (index_reached == temp_index || index_reached == -1)
             return(free_array(array, index_reached), NULL);
     }
-    *numbers = (long *)malloc(sizeof(long) * c);
-    *unordered_numbers = (long *)malloc(sizeof(long) * c);
+    *numbers = (long *)malloc(sizeof(long) * count);
+    *unordered_numbers = (long *)malloc(sizeof(long) * count);
     if (!*numbers || !*unordered_numbers)
-        return (free_array(array, index_reached), free(*numbers), free(*unordered_numbers), NULL);
+        return (free_pointers(array, numbers, unordered_numbers, index_reached), NULL);
     return(array);
 }
 
@@ -547,31 +547,31 @@ int push_swap(int argc, char **argv)
     char **array;
     long *numbers;
     long *unordered_numbers;
-    int c;
+    int count;
     
     if (argc == 1 || (argc == 2 && !**(argv + 1)))
         return (1);
-    c = count_all_nums(argv + 1, argc);
-    array = first(argv + 1, argc, c, &numbers, &unordered_numbers);
+    count = count_all_nums(argv + 1, argc);
+    array = allocation_manager(argv + 1, argc, count, &numbers, &unordered_numbers);
     if (array == NULL)
         return (1);
-    if(check_for_errors(&array, &numbers, c))
-        return (free_pointers(&array, &numbers, &unordered_numbers, c), 1);
-    numbers_copy(numbers, unordered_numbers, c);
+    if(check_for_errors(&array, &numbers, count))
+        return (free_pointers(array, &numbers, &unordered_numbers, count), 1);
+    numbers_copy(numbers, unordered_numbers, count);
     stack_a = NULL;
     stack_b = NULL;
-    if(!sort_numbers(numbers, c) || assign_to_stack(&stack_a, unordered_numbers, numbers, c))
-        return (free_all(&stack_a, &stack_b, &array, &numbers, &unordered_numbers, c), 1);
-    operations_manager(&stack_a, &stack_b, c);
+    if(!sort_numbers(numbers, count) || assign_to_stack(&stack_a, unordered_numbers, numbers, count))
+        return (free_all(&stack_a, &stack_b, array, &numbers, &unordered_numbers, count), 1);
+    operations_manager(&stack_a, &stack_b, count);
      stack_node_t *tmp = stack_a;
-	while (tmp)
-	{
-		printf("value: %d -> \n", tmp->value);
-		printf("index: %d -> \n", tmp->index);
-		printf("##################\n");
-		tmp = tmp->next;
-	}
-    free_all(&stack_a, &stack_b, &array, &numbers, &unordered_numbers, c);
+	// while (tmp)
+	// {
+	// 	printf("value: %d -> \n", tmp->value);
+	// 	printf("index: %d -> \n", tmp->index);
+	// 	printf("##################\n");
+	// 	tmp = tmp->next;
+	// }
+    free_all(&stack_a, &stack_b, array, &numbers, &unordered_numbers, count);
     return (0);
 }
 

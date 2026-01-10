@@ -6,15 +6,26 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:28:25 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/08 22:46:05 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/10 20:08:33 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_pointers(char ***array, long **numbers, long **unordered_numbers, int len)
+int free_array(char **ptr, int i)
 {
-    free_array(*array, len);
+	while (i > 0)
+	{
+		i--;
+		free(ptr[i]);
+	}
+	free(ptr);
+	return (-1);
+}
+
+void free_pointers(char **array, long **numbers, long **unordered_numbers, int len)
+{
+    free_array(array, len);
     free(*numbers);
     free(*unordered_numbers);
 }
@@ -40,7 +51,7 @@ void free_all_stacks(stack_node_t **stack_a, stack_node_t **stack_b)
     free_stack(stack_b);
 }
 
-void free_all(stack_node_t **stack_a, stack_node_t **stack_b, char ***array, long **numbers, long **unordered_numbers, int c)
+void free_all(stack_node_t **stack_a, stack_node_t **stack_b, char **array, long **numbers, long **unordered_numbers, int c)
 {
     free_stack(stack_a);
     free_stack(stack_b);

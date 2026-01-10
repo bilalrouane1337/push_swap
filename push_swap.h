@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:49:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/09 00:44:30 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/10 20:07:52 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct stack_node
 #include <stdlib.h>
 #include <limits.h>
 
+
+
+int	ft_count_words(char const *str, char c);
 size_t	ft_strlen(const char *s);
 int split_them(char const *s, char **s2, char c, int word);
 int error_checker(char *str);
@@ -37,11 +40,11 @@ int	ft_count_words(char const *str, char c);
 char	*ft_putword(char *word, char const *s, int i, int word_len);
 long	ft_atoi(const char *nptr, int *flag);
 int free_array(char **ptr, int i);
-void free_pointers(char ***array, long **numbers, long **unordered_numbers, int len);
+void free_pointers(char **array, long **numbers, long **unordered_numbers, int len);
 void free_stack(stack_node_t **stack);
 int ft_lstadd_back(stack_node_t **lst, long value, int index);
 void free_all_stacks(stack_node_t **stack_a, stack_node_t **stack_b);
-void free_all(stack_node_t **stack_a, stack_node_t **stack_b, char ***array, long **numbers, long **unordered_numbers, int c);
+void free_all(stack_node_t **stack_a, stack_node_t **stack_b, char **array, long **numbers, long **unordered_numbers, int c);
 
 void ft_print(char *str);
 
