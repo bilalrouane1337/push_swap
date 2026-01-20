@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:37:25 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/10 20:15:43 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/20 18:22:02 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ char	*ft_putword(char *word, char const *s, int i, int word_len)
 	return (word);
 }
 
-int ft_split_words(char const *s, char c, char **s2, int num_words, int word)
+int	ft_split_words(char const *s, char **s2, int num_words, int word)
 {
 	int	i;
 	int	word_len;
-	int reached_index;
+	int	reached_index;
 
 	i = 0;
 	reached_index = 0;
 	while (reached_index < num_words)
 	{
 		word_len = 0;
-		while (s[i] && s[i] == c)
+		while (s[i] && s[i] == 32)
 			i++;
-		while (s[i] && s[i] != c)
+		while (s[i] && s[i] != 32)
 		{
 			i++;
 			word_len++;
@@ -56,13 +56,14 @@ int ft_split_words(char const *s, char c, char **s2, int num_words, int word)
 	return (word);
 }
 
-int split_them(char const *s, char **s2, char c, int word)
+int	split_them(char const *s, char **s2, int word)
 {
 	unsigned int	num_words;
-	
+	int				index_reached;
+
 	if (!s)
 		return (word);
-	num_words = ft_count_words(s, c);
-	int wordd = ft_split_words(s, c, s2, num_words, word);
-	return (wordd);
+	num_words = ft_count_words(s, 32);
+	index_reached = ft_split_words(s, s2, num_words, word);
+	return (index_reached);
 }

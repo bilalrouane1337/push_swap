@@ -6,18 +6,18 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 22:10:09 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/08 21:45:07 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:59:46 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_print(char *str)
+void	ft_print(char *str)
 {
-    while (*str)
-    {
-        write(1, str, 1);
-        str++;
-    }
-    write(1, "\n", 1);
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+	write(1, "\n", 1);
 }

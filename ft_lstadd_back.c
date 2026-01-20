@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:37:28 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/07 18:23:30 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:53:48 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ stack_node_t	*ft_lstnew(long value, int index)
 	return (node);
 }
 
-int ft_lstadd_back(stack_node_t **lst, long value, int index)
+int	ft_lstadd_back(stack_node_t **lst, long value, int index)
 {
 	stack_node_t	*start;
-	stack_node_t *new;
+	stack_node_t	*new;
 
 	new = ft_lstnew(value, index);
-	if(new == NULL)
+	if (new == NULL)
 		return (1);
 	new->next = NULL;
 	if (*lst)

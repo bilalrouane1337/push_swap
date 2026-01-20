@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_pointers.c                                    :+:      :+:    :+:   */
+/*   extended_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/07 17:41:32 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/07 17:45:10 by brouane          ###   ########.fr       */
+/*   Created: 2026/01/20 17:19:53 by brouane           #+#    #+#             */
+/*   Updated: 2026/01/20 17:20:40 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_pointers(char ***array, long **numbers, long **unordered_numbers, int len)
+int	assign_to_stack(stack_node_t **stack, long *unordered_numbers,
+		long *numbers, int c)
 {
-    free_array(*array, len);
-    free(*numbers);
-    free(*unordered_numbers);
+	int	i;
+	int	index;
+
+	i = 0;
+	while (i < c)
+	{
+		index = find_index(unordered_numbers[i], numbers, c);
+		if (ft_lstadd_back(stack, unordered_numbers[i], index))
+			return (1);
+		i++;
+	}
+	return (0);
 }

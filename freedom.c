@@ -6,13 +6,13 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:28:25 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/10 20:08:33 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:58:02 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int free_array(char **ptr, int i)
+int	free_array(char **ptr, int i)
 {
 	while (i > 0)
 	{
@@ -23,37 +23,31 @@ int free_array(char **ptr, int i)
 	return (-1);
 }
 
-void free_pointers(char **array, long **numbers, long **unordered_numbers, int len)
+void	free_pointers(char **array, long **numbers, long **unordered_numbers,
+			int len)
 {
-    free_array(array, len);
-    free(*numbers);
-    free(*unordered_numbers);
+	free_array(array, len);
+	free(*numbers);
+	free(*unordered_numbers);
 }
 
-void free_stack(stack_node_t **stack)
+void	free_stack(stack_node_t **stack)
 {
-    stack_node_t *temp;
+	stack_node_t	*temp;
 
-    temp = *stack;
-    if (!stack)
-        return ;
-    while (*stack)
-    {
-        temp = (*stack)->next;
-        free(*stack);
-        *stack = temp;
-    }
+	if (!stack)
+		return ;
+	temp = *stack;
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
 }
 
-void free_all_stacks(stack_node_t **stack_a, stack_node_t **stack_b)
+void	free_all_stacks(stack_node_t **stack_a, stack_node_t **stack_b)
 {
-    free_stack(stack_a);
-    free_stack(stack_b);
-}
-
-void free_all(stack_node_t **stack_a, stack_node_t **stack_b, char **array, long **numbers, long **unordered_numbers, int c)
-{
-    free_stack(stack_a);
-    free_stack(stack_b);
-    free_pointers(array, numbers, unordered_numbers, c);
+	free_stack(stack_a);
+	free_stack(stack_b);
 }

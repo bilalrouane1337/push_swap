@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 18:56:22 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/09 00:48:34 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:59:34 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ long	ft_atoi(const char *nptr, int *flag)
 {
 	size_t	i;
 	long	result;
-	long		sign;
+	long	sign;
 
 	i = 0;
 	result = 0;
@@ -33,9 +33,7 @@ long	ft_atoi(const char *nptr, int *flag)
 	{
 		result = result * 10 + (nptr[i] - '0');
 		if (result * sign > INT_MAX || result * sign < INT_MIN)
-		{
 			*flag = 1;
-		}
 		i++;
 	}
 	return (result * sign);
