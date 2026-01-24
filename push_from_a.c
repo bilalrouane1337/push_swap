@@ -6,13 +6,13 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:37:28 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:16:09 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:03:58 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	which_position_in_a(stack_node_t *stack, int real_len)
+int	which_position_in_a(t_stack_node *stack, int real_len)
 {
 	int	pos;
 
@@ -25,7 +25,7 @@ int	which_position_in_a(stack_node_t *stack, int real_len)
 	return (pos);
 }
 
-void	push_using_ra(stack_node_t **stack_a, stack_node_t **stack_b,
+void	push_using_ra(t_stack_node **stack_a, t_stack_node **stack_b,
 		int *position, int *real_len)
 {
 	while (*stack_a && *position > 0)
@@ -40,7 +40,7 @@ void	push_using_ra(stack_node_t **stack_a, stack_node_t **stack_b,
 	}
 }
 
-void	push_using_rra(stack_node_t **stack_a, stack_node_t **stack_b,
+void	push_using_rra(t_stack_node **stack_a, t_stack_node **stack_b,
 		int *position, int *real_len)
 {
 	while (*stack_a && *position <= *real_len)
@@ -55,7 +55,7 @@ void	push_using_rra(stack_node_t **stack_a, stack_node_t **stack_b,
 	}
 }
 
-void	push_from_a(stack_node_t **stack_a, stack_node_t **stack_b, int c)
+void	push_from_a(t_stack_node **stack_a, t_stack_node **stack_b, int c)
 {
 	int	min_index;
 	int	max_index;

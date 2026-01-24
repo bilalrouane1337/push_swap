@@ -6,13 +6,13 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 18:13:03 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:23:45 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:04:55 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	three_sorter_cases(stack_node_t **stack_a, int a, int b, int c)
+void	three_sorter_cases(t_stack_node **stack_a, int a, int b, int c)
 {
 	if (a > b && b < c && a < c)
 		sa(stack_a);
@@ -32,10 +32,10 @@ void	three_sorter_cases(stack_node_t **stack_a, int a, int b, int c)
 		rra(stack_a);
 }
 
-void	three_sorter(stack_node_t **stack_a)
+void	three_sorter(t_stack_node **stack_a)
 {
-	stack_node_t	*second;
-	stack_node_t	*third;
+	t_stack_node	*second;
+	t_stack_node	*third;
 	int				a;
 	int				b;
 	int				c;

@@ -6,16 +6,16 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:00:46 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:19:32 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:04:36 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-stack_node_t	*rotate(stack_node_t **stack)
+t_stack_node	*rotate(t_stack_node **stack)
 {
-	stack_node_t	*temp;
-	stack_node_t	*search;
+	t_stack_node	*temp;
+	t_stack_node	*search;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return (*stack);
@@ -29,13 +29,13 @@ stack_node_t	*rotate(stack_node_t **stack)
 	return (*stack);
 }
 
-stack_node_t	*ra(stack_node_t **stack_a)
+t_stack_node	*ra(t_stack_node **stack_a)
 {
 	ft_print("ra");
 	return (rotate(stack_a));
 }
 
-stack_node_t	*rb(stack_node_t **stack_b)
+t_stack_node	*rb(t_stack_node **stack_b)
 {
 	ft_print("rb");
 	return (rotate(stack_b));

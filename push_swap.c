@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:43:51 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:04:06 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	initialize_data(int argc, char **argv, t_data *data)
 
 int	push_swap(int argc, char **argv)
 {
-	stack_node_t	*stack_a;
-	stack_node_t	*stack_b;
+	t_stack_node	*stack_a;
+	t_stack_node	*stack_b;
 	t_data			data;
 
 	if (initialize_data(argc, argv, &data))
@@ -65,16 +65,7 @@ int	push_swap(int argc, char **argv)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    push_swap(argc, argv);
+	push_swap(argc, argv);
 }
-
-    //  stack_node_t *tmp = stack_a;
-	// while (tmp)
-	// {
-	// 	printf("value: %d -> \n", tmp->value);
-	// 	printf("index: %d -> \n", tmp->index);
-	// 	printf("##################\n");
-	// 	tmp = tmp->next;
-	// }

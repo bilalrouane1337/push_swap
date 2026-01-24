@@ -6,13 +6,13 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:15:27 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:15:26 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:03:50 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	which_position(stack_node_t *stack, int real_len)
+int	which_position(t_stack_node *stack, int real_len)
 {
 	int	pos;
 
@@ -25,7 +25,7 @@ int	which_position(stack_node_t *stack, int real_len)
 	return (pos);
 }
 
-void	push_using_rb(stack_node_t **stack_a, stack_node_t **stack_b,
+void	push_using_rb(t_stack_node **stack_a, t_stack_node **stack_b,
 		int *position, int *real_len)
 {
 	while (*stack_b && *position > 0)
@@ -40,7 +40,7 @@ void	push_using_rb(stack_node_t **stack_a, stack_node_t **stack_b,
 	}
 }
 
-void	push_using_rrb(stack_node_t **stack_a, stack_node_t **stack_b,
+void	push_using_rrb(t_stack_node **stack_a, t_stack_node **stack_b,
 		int *position, int *real_len)
 {
 	while (*stack_b && *position <= *real_len)
@@ -55,7 +55,7 @@ void	push_using_rrb(stack_node_t **stack_a, stack_node_t **stack_b,
 	}
 }
 
-void	push_back_to_a(stack_node_t **stack_a, stack_node_t **stack_b, int c)
+void	push_back_to_a(t_stack_node **stack_a, t_stack_node **stack_b, int c)
 {
 	int	real_len;
 	int	position;

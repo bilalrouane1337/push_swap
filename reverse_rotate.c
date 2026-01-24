@@ -6,17 +6,17 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:01:27 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:18:43 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 19:04:30 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-stack_node_t	*reverse_rotate(stack_node_t **stack)
+t_stack_node	*reverse_rotate(t_stack_node **stack)
 {
-	stack_node_t	*curr;
-	stack_node_t	*first;
-	stack_node_t	*prev;
+	t_stack_node	*curr;
+	t_stack_node	*first;
+	t_stack_node	*prev;
 
 	curr = *stack;
 	first = *stack;
@@ -34,13 +34,13 @@ stack_node_t	*reverse_rotate(stack_node_t **stack)
 	return (*stack);
 }
 
-stack_node_t	*rra(stack_node_t **stack_a)
+t_stack_node	*rra(t_stack_node **stack_a)
 {
 	ft_print("rra");
 	return (reverse_rotate(stack_a));
 }
 
-stack_node_t	*rrb(stack_node_t **stack_b)
+t_stack_node	*rrb(t_stack_node **stack_b)
 {
 	ft_print("rrb");
 	return (reverse_rotate(stack_b));
