@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:02:43 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 18:21:23 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 22:19:45 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,81 +15,89 @@
 int	count_all_nums(char **argv, int argc)
 {
 	int	i;
-	int	c;
+	int	count;
+	int	holder;
 
 	i = 0;
-	c = 0;
+	count = 0;
 	while (i < argc - 1)
 	{
-		c += ft_count_words(argv[i], ' ');
+		holder = ft_count_words(argv[i], 32);
+		if (holder == 0)
+		{
+			ft_print("Error");
+			exit(1);
+		}
+		count += holder;
 		i++;
 	}
-	return (c);
+	return (count);
 }
 
 char	**array_manager(char **argv, int argc, int count)
 {
 	int		i;
-	int		temp_index;
 	char	**array;
 	int		index_reached;
 
 	index_reached = 0;
 	array = (char **)malloc(sizeof(char *) * (count + 1));
-	if (count == 0 || !array)
-		return (free_array(array, index_reached), NULL);
+	if (!array)
+		exit(1);
 	i = 0;
 	while (i < argc - 1)
 	{
-		temp_index = index_reached;
-		index_reached = split_them(argv[i++], array, index_reached);
-		if (index_reached == temp_index || index_reached == -1)
-			return (free_array(array, index_reached), NULL);
+		index_reached = split_them(argv[i++], &array, index_reached);
+		if (index_reached == -1)
+			exit(1);
 	}
 	return (array);
 }
 
-void	numbers_manager(char ***array, int count, long **numbers,
-			long **unordered_numbers)
+void	numbers_manager(char ***array, int count, long **sorted_numbers,
+			long **original_numbers)
 {
-	*numbers = (long *)malloc(sizeof(long) * count);
-	*unordered_numbers = (long *)malloc(sizeof(long) * count);
-	if (!*numbers || !*unordered_numbers)
-		free_pointers(*array, numbers, unordered_numbers, count);
+	*sorted_numbers = (long *)malloc(sizeof(long) * count);
+	*original_numbers = (long *)malloc(sizeof(long) * count);
+	if (!*sorted_numbers || !*original_numbers)
+	{
+		free_pointers(*array, sorted_numbers, original_numbers, count);
+		exit(1);
+	}
 }
 
-void	numbers_copy(long *numbers, long *unordered_numbers, int c)
+void	numbers_copy(long *sorted_numbers, long *original_numbers, int count)
 {
 	int	i;
 
 	i = 0;
-	while (i < c)
+	while (i < count)
 	{
-		unordered_numbers[i] = numbers[i];
+		sorted_numbers[i] = original_numbers[i];
 		i++;
 	}
 }
 
-int	sort_numbers(long *numbers, int c)
+int	sort_numbers(long *sorted_numbers, int c)
 {
 	int		i;
 	int		j;
 	int		flag;
 	long	temp;
 
-	flag = 0;
+	flag = 1;
 	i = 0;
 	while (i < c - 1)
 	{
 		j = i + 1;
 		while (j <= c - 1)
 		{
-			if (numbers[i] > numbers[j])
+			if (sorted_numbers[i] > sorted_numbers[j])
 			{
-				temp = numbers[i];
-				numbers[i] = numbers[j];
-				numbers[j] = temp;
-				flag = 1;
+				temp = sorted_numbers[i];
+				sorted_numbers[i] = sorted_numbers[j];
+				sorted_numbers[j] = temp;
+				flag = 0;
 			}
 			j++;
 		}

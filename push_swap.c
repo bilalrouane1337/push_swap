@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 19:04:06 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 22:19:21 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,25 @@
 typedef struct s_data
 {
 	char	**array;
-	long	*numbers;
-	long	*unordered_numbers;
+	long	*original_numbers;
+	long	*sorted_numbers;
 	int		count;
 }	t_data;
 
 int	initialize_data(int argc, char **argv, t_data *data)
 {
-	if (argc == 1 || (argc == 2 && !**(argv + 1)))
+	if (argc == 1)
 		return (1);
 	data->count = count_all_nums(argv + 1, argc);
 	data->array = array_manager(argv + 1, argc, data->count);
 	numbers_manager(&data->array, data->count,
-		&data->numbers, &data->unordered_numbers);
-	if (data->array == NULL)
-		return (1);
+		&data->sorted_numbers, &data->original_numbers);
 	if (check_for_errors(&data->array,
-			&data->numbers, data->count))
+			&data->original_numbers, data->count))
 		return (free_pointers(data->array,
-				&data->numbers, &data->unordered_numbers,
+				&data->sorted_numbers, &data->original_numbers,
 				data->count), 1);
-	numbers_copy(data->numbers, data->unordered_numbers, data->count);
+	numbers_copy(data->sorted_numbers, data->original_numbers, data->count);
 	return (0);
 }
 
@@ -49,19 +47,27 @@ int	push_swap(int argc, char **argv)
 		return (1);
 	stack_a = NULL;
 	stack_b = NULL;
-	if (!sort_numbers(data.numbers, data.count)
+	if (sort_numbers(data.sorted_numbers, data.count)
 		|| assign_to_stack(&stack_a,
-			data.unordered_numbers, data.numbers, data.count))
+			data.original_numbers, data.sorted_numbers, data.count))
 	{
 		free_all_stacks(&stack_a, &stack_b);
-		free_pointers(data.array, &data.numbers,
-			&data.unordered_numbers, data.count);
+		free_pointers(data.array, &data.sorted_numbers,
+			&data.original_numbers, data.count);
 		return (1);
 	}
 	operations_manager(&stack_a, &stack_b, data.count);
+	
+	t_stack_node *tm = stack_a;
+	while (tm)
+	{
+		printf("%d\n", tm->value);
+		tm = tm->next;
+	}
+	
 	free_all_stacks(&stack_a, &stack_b);
-	free_pointers(data.array, &data.numbers,
-		&data.unordered_numbers, data.count);
+	free_pointers(data.array, &data.sorted_numbers,
+		&data.original_numbers, data.count);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 19:51:51 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/20 16:52:25 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/24 22:36:11 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ int	ft_count_words(char const *str, char c)
 	return (count);
 }
 
-int	find_index(int value, long *numbers, int c)
+int	find_index(int value, long *sorted_numbers, int c)
 {
 	int	index;
 
 	index = 0;
 	while (c > index)
 	{
-		if (value == numbers[index])
-			return (index);
+		if (value == sorted_numbers[index])
+			break;
 		index++;
 	}
-	return (-1);
+	return (index);
 }
 
 size_t	ft_strlen(const char *s)
