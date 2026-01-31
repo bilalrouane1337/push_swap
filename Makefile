@@ -6,82 +6,81 @@
 #    By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 21:41:29 by brouane           #+#    #+#              #
-#    Updated: 2026/01/31 21:41:48 by brouane          ###   ########.fr        #
+#    Updated: 2026/01/31 21:49:07 by brouane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-NAME    = push_swap
 
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 RM      = rm -f
 
-SRCS	= ft_atoi.c \
-		  error_checker.c \
-		  extended_functions.c \
-		  external_functions.c \
-		  freedom.c \
-		  ft_lstadd_back.c \
-		  ft_print.c \
-		  internal_functions.c \
-		  operations_manager.c \
-		  push.c \
-		  push_back_to_a.c \
-		  push_from_a.c \
-		  push_to_b.c \
-		  push_swap.c \
-		  rotate.c \
-		  reverse_rotate.c \
-		  split_them.c \
-		  swap.c \
-		  three_sorter.c
+NAME    = push_swap
 
+SRCS    = ft_atoi.c \
+          error_checker.c \
+          extended_functions.c \
+          external_functions.c \
+          freedom.c \
+          ft_lstadd_back.c \
+          ft_print.c \
+          internal_functions.c \
+          operations_manager.c \
+          push.c \
+          push_back_to_a.c \
+          push_from_a.c \
+          push_to_b.c \
+          push_swap.c \
+          rotate.c \
+          reverse_rotate.c \
+          split_them.c \
+          swap.c \
+          three_sorter.c
 
 OBJS    = $(SRCS:.c=.o)
+
+NAME_BONUS = checker
+
+SRCS_BONUS = checker.c \
+             error_checker.c \
+             extended_functions.c \
+             external_functions.c \
+             freedom.c \
+             ft_atoi.c \
+             ft_lstadd_back.c \
+             ft_print.c \
+             internal_functions.c \
+             push.c \
+             rotate.c \
+             reverse_rotate.c \
+             swap.c \
+             split_them.c \
+             checker_utils.c \
+             get_next_line.c \
+             get_next_line_utils.c
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c push_swap.h
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS)
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+re_bonus: fclean bonus
 
-
-# NAME = checker
-
-# CC = cc
-# CFLAGS = -Wall -Wextra -Werror
-
-# SRC = checker.c error_checker.c extended_functions.c \
-#       external_functions.c freedom.c ft_atoi.c \
-#       ft_lstadd_back.c ft_print.c internal_functions.c \
-#       push.c rotate.c reverse_rotate.c swap.c \
-#       split_them.c u.c \
-#       get_next_line.c get_next_line_utils.c
-
-
-# OBJ = $(SRC:.c=.o)
-
-# all: $(NAME)
-
-# $(NAME): $(OBJ)
-# 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-
-# clean:
-# 	rm -f $(OBJ)
-
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
+.PHONY: all clean fclean re bonus re_bonus
