@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:49:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 22:42:00 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:27:43 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 }	t_stack_node;
 
+typedef struct s_data
+{
+	char	**array;
+	long	*original_numbers;
+	long	*sorted_numbers;
+	int		count;
+}	t_data;
+
+int	initialize_data(int argc, char **argv, t_data *data);
+
+
 int				check_for_errors(char ***array, long **sorted_numbers, int count);
 int				ft_count_words(char const *str, char count);
 int				find_index(int value, long *sorted_numbers, int count);
@@ -41,16 +52,19 @@ void			free_all_stacks(t_stack_node **stack_a, t_stack_node **stack_b);
 int			ft_atoi(const char *nptr, int *flag);
 int				ft_lstadd_back(t_stack_node **lst, long value, int index);
 void			ft_print(char *str);
-void	ra(t_stack_node **stack_a);
-void	rb(t_stack_node **stack_b);
-void	rra(t_stack_node **stack_a);
-void	rrb(t_stack_node **stack_b);
+void	ra(t_stack_node **stack_a, int to_print);
+void	rb(t_stack_node **stack_b, int to_print);
+void	rra(t_stack_node **stack_a, int to_print);
+void	rrb(t_stack_node **stack_b, int to_print);
 void	pb(t_stack_node **stack_a, t_stack_node **stack_b,
-					t_stack_node *to_push);
+					t_stack_node *to_push, int to_print);
 void	pa(t_stack_node **stack_a, t_stack_node **stack_b,
-					t_stack_node *to_push);
-void	sa(t_stack_node **stack_a);
-void	sb(t_stack_node **stack_b);
+					t_stack_node *to_push, int to_print);
+void	sa(t_stack_node **stack_a, int to_print);
+void	sb(t_stack_node **stack_b, int to_print);
+void    ss(t_stack_node **a, t_stack_node **b, int print);
+void    rr(t_stack_node **a, t_stack_node **b, int print);
+void    rrr(t_stack_node **a, t_stack_node **b, int print);
 int				count_all_nums(char **argv, int argc);
 char			**array_manager(char **argv, int argc, int count);
 void			numbers_manager(char ***array, int count,

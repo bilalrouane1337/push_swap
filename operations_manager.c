@@ -14,7 +14,7 @@
 
 void	two_sorter(t_stack_node **stack_a)
 {
-	ra(stack_a);
+	ra(stack_a, 1);
 }
 
 void	five_sorter(t_stack_node **stack_a, t_stack_node **stack_b, int count)

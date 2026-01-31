@@ -6,7 +6,7 @@
 #    By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 21:41:29 by brouane           #+#    #+#              #
-#    Updated: 2026/01/24 22:35:12 by brouane          ###   ########.fr        #
+#    Updated: 2026/01/31 21:41:48 by brouane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,3 +56,32 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+# NAME = checker
+
+# CC = cc
+# CFLAGS = -Wall -Wextra -Werror
+
+# SRC = checker.c error_checker.c extended_functions.c \
+#       external_functions.c freedom.c ft_atoi.c \
+#       ft_lstadd_back.c ft_print.c internal_functions.c \
+#       push.c rotate.c reverse_rotate.c swap.c \
+#       split_them.c u.c \
+#       get_next_line.c get_next_line_utils.c
+
+
+# OBJ = $(SRC:.c=.o)
+
+# all: $(NAME)
+
+# $(NAME): $(OBJ)
+# 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+# clean:
+# 	rm -f $(OBJ)
+
+# fclean: clean
+# 	rm -f $(NAME)
+
+# re: fclean all

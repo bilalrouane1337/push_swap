@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:01:27 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 23:02:19 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:26:14 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,24 @@ void	reverse_rotate(t_stack_node **stack)
 	}
 }
 
-
-void	rra(t_stack_node **stack_a)
+void	rra(t_stack_node **stack_a, int to_print)
 {
-	ft_print("rra");
+	if(to_print)
+		ft_print("rra");
 	reverse_rotate(stack_a);
 }
 
-void	rrb(t_stack_node **stack_b)
+void	rrb(t_stack_node **stack_b, int to_print)
 {
-	ft_print("rrb");
+	if(to_print)
+		ft_print("rrb");
 	reverse_rotate(stack_b);
+}
+
+void rrr(t_stack_node **a, t_stack_node **b, int print)
+{
+    rra(a, 0);
+    rrb(b, 0);
+    if (print)
+        ft_print("rrr");
 }

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:18:55 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 22:37:09 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:32:13 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b, int c)
 	{
 		if ((*stack_a)->index <= min_range)
 		{
-			pb(stack_a, stack_b, *stack_a);
+			pb(stack_a, stack_b, *stack_a, 1);
 			min_range++;
 		}
 		else if ((*stack_a)->index <= min_range + max_range)
 		{
-			pb(stack_a, stack_b, *stack_a);
-			rb(stack_b);
+			pb(stack_a, stack_b, *stack_a, 1);
+			rb(stack_b, 1);
 			min_range++;
 		}
 		else
-			ra(stack_a);
+			ra(stack_a, 1);
 	}
 }

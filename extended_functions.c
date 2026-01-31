@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:19:53 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 22:10:20 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:39:43 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,22 @@ int	assign_to_stack(t_stack_node **stack, long *original_numbers,
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+int	initialize_data(int argc, char **argv, t_data *data)
+{
+	if (argc == 1)
+		return (1);
+	data->count = count_all_nums(argv + 1, argc);
+	data->array = array_manager(argv + 1, argc, data->count);
+	numbers_manager(&data->array, data->count,
+		&data->sorted_numbers, &data->original_numbers);
+	if (check_for_errors(&data->array,
+			&data->original_numbers, data->count))
+		return (free_pointers(data->array,
+				&data->sorted_numbers, &data->original_numbers,
+				data->count), 1);
+	numbers_copy(data->sorted_numbers, data->original_numbers, data->count);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:15:27 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 19:03:50 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:32:54 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	push_using_rb(t_stack_node **stack_a, t_stack_node **stack_b,
 {
 	while (*stack_b && *position > 0)
 	{
-		rb(stack_b);
+		rb(stack_b, 1);
 		(*position)--;
 	}
 	if (*stack_b)
 	{
-		pa(stack_a, stack_b, *stack_b);
+		pa(stack_a, stack_b, *stack_b, 1);
 		(*real_len)--;
 	}
 }
@@ -45,12 +45,12 @@ void	push_using_rrb(t_stack_node **stack_a, t_stack_node **stack_b,
 {
 	while (*stack_b && *position <= *real_len)
 	{
-		rrb(stack_b);
+		rrb(stack_b, 1);
 		(*position)++;
 	}
 	if (*stack_b)
 	{
-		pa(stack_a, stack_b, *stack_b);
+		pa(stack_a, stack_b, *stack_b, 1);
 		(*real_len)--;
 	}
 }
@@ -65,7 +65,7 @@ void	push_back_to_a(t_stack_node **stack_a, t_stack_node **stack_b, int c)
 	{
 		if ((*stack_b)->index == real_len)
 		{
-			pa(stack_a, stack_b, *stack_b);
+			pa(stack_a, stack_b, *stack_b, 1);
 			real_len--;
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 22:19:21 by brouane          ###   ########.fr       */
+/*   Updated: 2026/01/31 21:41:24 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,6 @@ typedef struct s_data
 	long	*sorted_numbers;
 	int		count;
 }	t_data;
-
-int	initialize_data(int argc, char **argv, t_data *data)
-{
-	if (argc == 1)
-		return (1);
-	data->count = count_all_nums(argv + 1, argc);
-	data->array = array_manager(argv + 1, argc, data->count);
-	numbers_manager(&data->array, data->count,
-		&data->sorted_numbers, &data->original_numbers);
-	if (check_for_errors(&data->array,
-			&data->original_numbers, data->count))
-		return (free_pointers(data->array,
-				&data->sorted_numbers, &data->original_numbers,
-				data->count), 1);
-	numbers_copy(data->sorted_numbers, data->original_numbers, data->count);
-	return (0);
-}
 
 int	push_swap(int argc, char **argv)
 {
@@ -58,12 +41,12 @@ int	push_swap(int argc, char **argv)
 	}
 	operations_manager(&stack_a, &stack_b, data.count);
 	
-	t_stack_node *tm = stack_a;
-	while (tm)
-	{
-		printf("%d\n", tm->value);
-		tm = tm->next;
-	}
+	// t_stack_node *tm = stack_a;
+	// while (tm)
+	// {
+	// 	printf("%d\n", tm->value);
+	// 	tm = tm->next;
+	// }
 	
 	free_all_stacks(&stack_a, &stack_b);
 	free_pointers(data.array, &data.sorted_numbers,
