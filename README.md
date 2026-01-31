@@ -58,6 +58,20 @@ The program outputs the sequence of operations required to sort the stack.
 
 ---
 
+### Bonus — Checker
+
+Compile the checker:
+
+make bonus
+
+This produces the checker executable:
+
+./checker 3 2 1
+
+The checker reads operations from stdin and outputs OK if the stack is correctly sorted, or KO otherwise. It prints Error for any invalid instructions.
+
+---
+
 ## Usage Example
 
 $ ./push_swap 3 2 1
@@ -115,6 +129,9 @@ Utility functions extending core logic.
 
 * `assign_to_stack(...)`
   Builds stack A by assigning each value its sorted index.
+
+* `initialize_data(...)`
+  Handles argument parsing, allocation, and validation. Shared by both push_swap and checker.
 
 ---
 
@@ -292,6 +309,9 @@ Rotation operations.
 * `rb(...)`
   Rotate B.
 
+* `rr(...)`
+  Simultaneously rotates both A and B.
+
 ---
 
 ### `reverse_rotate.c`
@@ -307,6 +327,9 @@ Reverse rotation operations.
 * `rrb(...)`
   Reverse rotate B.
 
+* `rrr(...)`
+  Simultaneously reverse rotates both A and B.
+
 ---
 
 ### `swap.c`
@@ -321,6 +344,9 @@ Swap operations.
 
 * `sb(...)`
   Swap B.
+
+* `ss(...)`
+  Simultaneously swaps both A and B.
 
 ---
 
@@ -363,6 +389,73 @@ Main program control.
 
 * `main(...)`
   Program entry point.
+
+---
+
+## Bonus — Checker Files
+
+---
+
+### `checker.c`
+
+Bonus checker main program.
+
+* `is_sorted_stack(...)`
+  Checks whether stack A is fully sorted by index.
+
+* `exec_instruction(...)`
+  Reads a single instruction string and executes the matching stack operation.
+
+* `read_and_execute(...)`
+  Reads all instructions from stdin line by line using get_next_line and executes each one.
+
+* `checker(...)`
+  Main checker pipeline: initializes data, reads and executes instructions, then outputs OK or KO.
+
+* `main(...)`
+  Checker program entry point.
+
+---
+
+### `checker_utils.c`
+
+Utility functions for the checker.
+
+* `ft_strcmp(...)`
+  Compares two strings. Used to match instruction names read from stdin.
+
+---
+
+### `get_next_line.c`
+
+Reads input line by line from a file descriptor.
+
+* `next_line(...)`
+  Extracts the next line from the working buffer.
+
+* `read_line(...)`
+  Reads from the file descriptor into the working buffer until a newline is found.
+
+* `new_line(...)`
+  Trims the already-extracted line from the working buffer.
+
+* `get_next_line(...)`
+  Main function: returns the next line from the given file descriptor.
+
+---
+
+### `get_next_line_utils.c`
+
+Helper functions for get_next_line.
+
+* `ft_strchr(...)`
+  Checks whether the working buffer contains a newline character.
+
+* `ft_strjoin_copy(...)`
+  Copies two strings into a pre-allocated joined buffer.
+
+* `ft_strjoin(...)`
+  Concatenates two strings into a newly allocated string.
 
 ---
 
