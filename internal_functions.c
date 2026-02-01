@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:02:43 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 22:19:45 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/01 15:10:58 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	numbers_copy(long *sorted_numbers, long *original_numbers, int count)
 	}
 }
 
-int	sort_numbers(long *sorted_numbers, int c)
+int	sort_numbers(long *sorted_numbers, int count)
 {
 	int		i;
 	int		j;
@@ -87,10 +87,10 @@ int	sort_numbers(long *sorted_numbers, int c)
 
 	flag = 1;
 	i = 0;
-	while (i < c - 1)
+	while (i < count - 1)
 	{
 		j = i + 1;
-		while (j <= c - 1)
+		while (j < count)
 		{
 			if (sorted_numbers[i] > sorted_numbers[j])
 			{

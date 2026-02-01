@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:28:25 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 21:52:15 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/01 20:57:18 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	free_array(char **ptr, int i)
 	return (-1);
 }
 
-void	free_pointers(char **array, long **sorted_numbers, long **original_numbers,
-			int len)
+void	free_pointers(char **array, long **sorted_numbers,
+					long **original_numbers, int len)
 {
 	free_array(array, len);
 	free(*sorted_numbers);

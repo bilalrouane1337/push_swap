@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:51:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/24 21:46:42 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/01 20:55:37 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ int	dig_sign_checker(char *str)
 	return (0);
 }
 
-int	dup_errors(int count, long *original_numbers)
+int	dup_errors(int count, long *nums)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (count > i)
+	while (i < count - 1)
 	{
-		j = 0;
-		while (count > j)
+		j = i + 1;
+		while (j < count)
 		{
-			if (original_numbers[i] == original_numbers[j] && i != j)
+			if (nums[i] == nums[j])
 				return (1);
 			j++;
 		}
@@ -65,22 +65,22 @@ int	dup_errors(int count, long *original_numbers)
 
 int	check_for_errors(char ***array, long **original_numbers, int count)
 {
-	int	max;
+	int	i;
 	int	flag;
 
-	max = 0;
+	i = 0;
 	flag = 0;
-	while ((*array)[max])
+	while ((*array)[i])
 	{
-		if (dig_sign_checker((*array)[max]))
+		if (dig_sign_checker((*array)[i]))
 		{
 			flag = 1;
 			break ;
 		}
-		(*original_numbers)[max] = ft_atoi((*array)[max], &flag);
+		(*original_numbers)[i] = ft_atoi((*array)[i], &flag);
 		if (flag == 1)
-			break;
-		max++;
+			break ;
+		i++;
 	}
 	if (flag == 0)
 	{

@@ -21,7 +21,7 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t			ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *working_line, char *buffer);
 char	*next_line(char *working_line);
 char	*new_line(char *working_line);

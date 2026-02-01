@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:15:27 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/31 21:32:54 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/01 20:59:08 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ void	push_using_rrb(t_stack_node **stack_a, t_stack_node **stack_b,
 	}
 }
 
-void	push_back_to_a(t_stack_node **stack_a, t_stack_node **stack_b, int c)
+void	push_back_to_a(t_stack_node **stack_a, t_stack_node **stack_b,
+					int count)
 {
 	int	real_len;
 	int	position;
 
-	real_len = c - 1;
+	real_len = count - 1;
 	while (*stack_b)
 	{
 		if ((*stack_b)->index == real_len)

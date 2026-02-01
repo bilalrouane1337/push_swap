@@ -1,38 +1,66 @@
 #!/bin/bash
 
 
-echo "2 number:"
-./push_swap "29204 -8054"
-./push_swap 6266 -5467
+# echo "2 number:"
+# ./push_swap "29204 -8054"
+# ./push_swap 6266 -5467
 
-echo "3 number:"
-./push_swap "29204 8054 -46702"
-./push_swap 5467 -15075 6266
+# echo "3 number:"
+# ./push_swap "29204 8054 -46702"
+# ./push_swap 5467 -15075 6266
 
-echo "4 number:"
-./push_swap "-29204 8054 46702 -43721"
-./push_swap 30004 5467 15075 6266
+# echo "4 number:"
+# ./push_swap "-29204 8054 46702 -43721"
+# ./push_swap 30004 5467 15075 6266
 
-echo "5 number:"
-./push_swap 29204 -8054 -46702 43721 -2165
-./push_swap -30004 -5467 -15075 -6266 -37205
+# echo "5 number:"
+# ./push_swap 29204 -8054 -46702 43721 -2165
+# ./push_swap -30004 -5467 -15075 -6266 -37205
 
 # errors-----------------------------------------------------------------------------------------------------------------------------------
 
-./push_swap
-./push_swap ""
-./push_swap "              " "               " ""
-./push_swap 1 2 3 4
-./push_swap "-"
-./push_swap "+"
-./push_swap "a"
-./push_swap "74 a"
-./push_swap "74 455a"
-./push_swap "74 455a" 468
-./push_swap "74 455a" 468 "44"
-./push_swap "74 44" 468 "44"
-./push_swap "74 44" 2147483648 "44"
-./push_swap "74 44" -2147483649 "44"
+# echo "./push_swap"
+# ./push_swap
+
+# echo "./push_swap \"\""
+# ./push_swap ""
+
+# echo "./push_swap \"              \" \"               \" \"\""
+# ./push_swap "              " "               " ""
+
+# echo "./push_swap 1 2 3 4"
+# ./push_swap 1 2 3 4
+
+# echo "./push_swap \"-\""
+# ./push_swap "-"
+
+# echo "./push_swap \"+\""
+# ./push_swap "+"
+
+# echo "./push_swap \"a\""
+# ./push_swap "a"
+
+# echo "./push_swap \"74 a\""
+# ./push_swap "74 a"
+
+# echo "./push_swap \"74 455a\""
+# ./push_swap "74 455a"
+
+# echo "./push_swap \"74 455a\" 468"
+# ./push_swap "74 455a" 468
+
+# echo "./push_swap \"74 455a\" 468 \"44\""
+# ./push_swap "74 455a" 468 "44"
+
+# echo "./push_swap \"74 44\" 468 \"44\""
+# ./push_swap "74 44" 468 "44"
+
+# echo "./push_swap \"74 44\" 2147483648 \"44\""
+# ./push_swap "74 44" 2147483648 "44"
+
+# echo "./push_swap \"74 44\" -2147483649 \"44\""
+# ./push_swap "74 44" -2147483649 "44"
+
 
 # wc -l-----------------------------------------------------------------------------------------------------------------------------------
 

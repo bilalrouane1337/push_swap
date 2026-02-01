@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:18:55 by brouane           #+#    #+#             */
-/*   Updated: 2026/01/31 21:32:13 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/01 20:25:44 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	set_max_range(int count)
 	return (32);
 }
 
-void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b, int c)
+void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b, int count)
 {
 	int				min_range;
 	int				max_range;
 
 	min_range = 0;
-	max_range = set_max_range(c);
+	max_range = set_max_range(count);
 	while (*stack_a)
 	{
 		if ((*stack_a)->index <= min_range)
