@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:49:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 21:15:59 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/03 23:04:39 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_pointers(char **array, long **sorted_numbers,
 void	free_stack(t_stack_node **stack);
 void	free_all_stacks(t_stack_node **stack_a, t_stack_node **stack_b);
 int		ft_atoi(const char *nptr, int *flag);
-int		ft_lstadd_back(t_stack_node **lst, long value, int index);
+int		ft_lstadd_back(t_stack_node **stack, long value, int index);
 void	ft_print(char *str);
 
 void	ra(t_stack_node **stack_a, int to_print);

@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:37:25 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 16:21:37 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/03 21:56:58 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_split_words(char const *argv, char ***array, int num_words, int index)
 {
 	int	i;
 	int	word_len;
-	int	reached_index;
+	int	reached_word;
 
 	i = 0;
-	reached_index = 0;
-	while (reached_index < num_words)
+	reached_word = 0;
+	while (reached_word < num_words)
 	{
 		word_len = 0;
 		while (argv[i] && argv[i] == 32)
@@ -48,7 +48,7 @@ int	ft_split_words(char const *argv, char ***array, int num_words, int index)
 		if (!(*array)[index])
 			return (free_array(*array, index), -1);
 		ft_putword((*array)[index], argv, i, word_len);
-		reached_index++;
+		reached_word++;
 		index++;
 	}
 	(*array)[index] = NULL;

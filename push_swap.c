@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:53:12 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 21:01:18 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/03 22:44:30 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	push_swap(int argc, char **argv)
 		|| assign_to_stack(&stack_a,
 			data.original_numbers, data.sorted_numbers, data.count))
 	{
-		free_all_stacks(&stack_a, &stack_b);
+		free_stack(&stack_a);
 		free_pointers(data.array, &data.sorted_numbers,
 			&data.original_numbers, data.count);
 		return (1);
