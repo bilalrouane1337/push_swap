@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 20:41:53 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 20:55:17 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/04 23:14:48 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	free_and_exit(
 		&data->original_numbers,
 		data->count);
 	if (ret)
-		write(2, "Error\n", 6);
+		ft_print_error("Error\n");
 }
 
 int	exec_instruction(

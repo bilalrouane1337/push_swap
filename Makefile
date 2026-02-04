@@ -6,7 +6,7 @@
 #    By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 21:41:29 by brouane           #+#    #+#              #
-#    Updated: 2026/01/31 21:49:07 by brouane          ###   ########.fr        #
+#    Updated: 2026/02/04 23:18:07 by brouane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS    = ft_atoi.c \
           freedom.c \
           ft_lstadd_back.c \
           ft_print.c \
+          ft_print_error.c \
           internal_functions.c \
           operations_manager.c \
           push.c \
@@ -48,6 +49,7 @@ SRCS_BONUS = checker.c \
              ft_atoi.c \
              ft_lstadd_back.c \
              ft_print.c \
+             ft_print_error.c \
              internal_functions.c \
              push.c \
              rotate.c \

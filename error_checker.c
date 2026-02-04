@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 16:51:59 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 20:55:37 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/04 23:15:57 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	check_for_errors(char ***array, long **original_numbers, int count)
 	if (flag == 0)
 	{
 		if (dup_errors(count, *original_numbers))
-			return (ft_print("Error"), 1);
+			return (ft_print_error("Error"), 1);
 	}
 	else
-		return (ft_print("Error"), 1);
+		return (ft_print_error("Error"), 1);
 	return (0);
 }

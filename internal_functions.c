@@ -6,7 +6,7 @@
 /*   By: brouane <brouane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:02:43 by brouane           #+#    #+#             */
-/*   Updated: 2026/02/01 15:10:58 by brouane          ###   ########.fr       */
+/*   Updated: 2026/02/04 23:16:22 by brouane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	count_all_nums(char **argv, int argc)
 		holder = ft_count_words(argv[i], 32);
 		if (holder == 0)
 		{
-			ft_print("Error");
+			ft_print_error("Error");
 			exit(1);
 		}
 		count += holder;
